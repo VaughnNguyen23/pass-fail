@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Password Validation</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+  <h1>Registration Form</h1>
+  
+  <form onsubmit="return validateForm()">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" required><br><br>
+  
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" required><br><br>
+  
+    <label for="password">Password:</label>
+    <input type="password" id="password" required><br><br>
+  
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    // Function to validate passwords
+    function validatePassword(password) {
+      // Check if password length is at least 8 characters
+      if (password.length < 8) {
+        return false;
+      }
+  
+      // Check if password contains at least one uppercase letter
+      if (!/[A-Z]/.test(password)) {
+        return false;
+      }
+  
+      // Check if password contains at least one lowercase letter
+      if (!/[a-z]/.test(password)) {
+        return false;
+      }
+  
+      return true;
+    }
+
+    // Function to validate the form
+    function validateForm() {
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const password = document.getElementById("password").value;
+
+      // Check if first name is missing
+      if (!firstName) {
+        alert("First name is required.");
+        return false;
+      }
+
+      // Check if last name is missing
+      if (!lastName) {
+        alert("Last name is required.");
+        return false;
+      }
+
+      // Check if password is missing or invalid
+      if (!password || !validatePassword(password)) {
+        alert("Password should have at least 8 characters, at least one uppercase letter, and at least one lowercase letter.");
+        return false;
+      }
+
+      // All fields are valid
+      alert("Form submission successful!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
